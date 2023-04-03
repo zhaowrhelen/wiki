@@ -1,9 +1,8 @@
 package com.example.wiki_helen.controller;
 
-
-import com.example.wiki_helen.domain.Ebook;
-
+import com.example.wiki_helen.req.EbookReq;
 import com.example.wiki_helen.resp.CommonResp;
+import com.example.wiki_helen.resp.EbookResp;
 import com.example.wiki_helen.service.EbookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +21,9 @@ public class EbookController {
     private EbookService ebookService;
 
     @GetMapping("/list")
-    public CommonResp list(){
-        CommonResp<Object> resp = new CommonResp<>();
-        List<Ebook> list = ebookService.list();
+    public CommonResp list(EbookReq req){
+        CommonResp<List<EbookResp>> resp = new CommonResp<>();
+        List<EbookResp> list = ebookService.list(req);
         resp.setContent(list);
         return resp;
     }
